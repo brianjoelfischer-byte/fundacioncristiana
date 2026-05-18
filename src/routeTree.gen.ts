@@ -13,6 +13,15 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppSolicitudesRouteImport } from './routes/app.solicitudes'
+import { Route as AppSectoresRouteImport } from './routes/app.sectores'
+import { Route as AppRecibosRouteImport } from './routes/app.recibos'
+import { Route as AppPerfilRouteImport } from './routes/app.perfil'
+import { Route as AppPedidosRouteImport } from './routes/app.pedidos'
+import { Route as AppNovedadesRouteImport } from './routes/app.novedades'
+import { Route as AppEmpleadosRouteImport } from './routes/app.empleados'
+import { Route as AppDocumentosRouteImport } from './routes/app.documentos'
+import { Route as AppCalendarioRouteImport } from './routes/app.calendario'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -34,16 +43,79 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSolicitudesRoute = AppSolicitudesRouteImport.update({
+  id: '/solicitudes',
+  path: '/solicitudes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSectoresRoute = AppSectoresRouteImport.update({
+  id: '/sectores',
+  path: '/sectores',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRecibosRoute = AppRecibosRouteImport.update({
+  id: '/recibos',
+  path: '/recibos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPerfilRoute = AppPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPedidosRoute = AppPedidosRouteImport.update({
+  id: '/pedidos',
+  path: '/pedidos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNovedadesRoute = AppNovedadesRouteImport.update({
+  id: '/novedades',
+  path: '/novedades',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmpleadosRoute = AppEmpleadosRouteImport.update({
+  id: '/empleados',
+  path: '/empleados',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDocumentosRoute = AppDocumentosRouteImport.update({
+  id: '/documentos',
+  path: '/documentos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCalendarioRoute = AppCalendarioRouteImport.update({
+  id: '/calendario',
+  path: '/calendario',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/app/calendario': typeof AppCalendarioRoute
+  '/app/documentos': typeof AppDocumentosRoute
+  '/app/empleados': typeof AppEmpleadosRoute
+  '/app/novedades': typeof AppNovedadesRoute
+  '/app/pedidos': typeof AppPedidosRoute
+  '/app/perfil': typeof AppPerfilRoute
+  '/app/recibos': typeof AppRecibosRoute
+  '/app/sectores': typeof AppSectoresRoute
+  '/app/solicitudes': typeof AppSolicitudesRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/app/calendario': typeof AppCalendarioRoute
+  '/app/documentos': typeof AppDocumentosRoute
+  '/app/empleados': typeof AppEmpleadosRoute
+  '/app/novedades': typeof AppNovedadesRoute
+  '/app/pedidos': typeof AppPedidosRoute
+  '/app/perfil': typeof AppPerfilRoute
+  '/app/recibos': typeof AppRecibosRoute
+  '/app/sectores': typeof AppSectoresRoute
+  '/app/solicitudes': typeof AppSolicitudesRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
@@ -51,14 +123,62 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/app/calendario': typeof AppCalendarioRoute
+  '/app/documentos': typeof AppDocumentosRoute
+  '/app/empleados': typeof AppEmpleadosRoute
+  '/app/novedades': typeof AppNovedadesRoute
+  '/app/pedidos': typeof AppPedidosRoute
+  '/app/perfil': typeof AppPerfilRoute
+  '/app/recibos': typeof AppRecibosRoute
+  '/app/sectores': typeof AppSectoresRoute
+  '/app/solicitudes': typeof AppSolicitudesRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/login' | '/app/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/app/calendario'
+    | '/app/documentos'
+    | '/app/empleados'
+    | '/app/novedades'
+    | '/app/pedidos'
+    | '/app/perfil'
+    | '/app/recibos'
+    | '/app/sectores'
+    | '/app/solicitudes'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/app'
-  id: '__root__' | '/' | '/app' | '/login' | '/app/'
+  to:
+    | '/'
+    | '/login'
+    | '/app/calendario'
+    | '/app/documentos'
+    | '/app/empleados'
+    | '/app/novedades'
+    | '/app/pedidos'
+    | '/app/perfil'
+    | '/app/recibos'
+    | '/app/sectores'
+    | '/app/solicitudes'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/login'
+    | '/app/calendario'
+    | '/app/documentos'
+    | '/app/empleados'
+    | '/app/novedades'
+    | '/app/pedidos'
+    | '/app/perfil'
+    | '/app/recibos'
+    | '/app/sectores'
+    | '/app/solicitudes'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,14 +217,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/solicitudes': {
+      id: '/app/solicitudes'
+      path: '/solicitudes'
+      fullPath: '/app/solicitudes'
+      preLoaderRoute: typeof AppSolicitudesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/sectores': {
+      id: '/app/sectores'
+      path: '/sectores'
+      fullPath: '/app/sectores'
+      preLoaderRoute: typeof AppSectoresRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/recibos': {
+      id: '/app/recibos'
+      path: '/recibos'
+      fullPath: '/app/recibos'
+      preLoaderRoute: typeof AppRecibosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/perfil': {
+      id: '/app/perfil'
+      path: '/perfil'
+      fullPath: '/app/perfil'
+      preLoaderRoute: typeof AppPerfilRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/pedidos': {
+      id: '/app/pedidos'
+      path: '/pedidos'
+      fullPath: '/app/pedidos'
+      preLoaderRoute: typeof AppPedidosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/novedades': {
+      id: '/app/novedades'
+      path: '/novedades'
+      fullPath: '/app/novedades'
+      preLoaderRoute: typeof AppNovedadesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/empleados': {
+      id: '/app/empleados'
+      path: '/empleados'
+      fullPath: '/app/empleados'
+      preLoaderRoute: typeof AppEmpleadosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/documentos': {
+      id: '/app/documentos'
+      path: '/documentos'
+      fullPath: '/app/documentos'
+      preLoaderRoute: typeof AppDocumentosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/calendario': {
+      id: '/app/calendario'
+      path: '/calendario'
+      fullPath: '/app/calendario'
+      preLoaderRoute: typeof AppCalendarioRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppCalendarioRoute: typeof AppCalendarioRoute
+  AppDocumentosRoute: typeof AppDocumentosRoute
+  AppEmpleadosRoute: typeof AppEmpleadosRoute
+  AppNovedadesRoute: typeof AppNovedadesRoute
+  AppPedidosRoute: typeof AppPedidosRoute
+  AppPerfilRoute: typeof AppPerfilRoute
+  AppRecibosRoute: typeof AppRecibosRoute
+  AppSectoresRoute: typeof AppSectoresRoute
+  AppSolicitudesRoute: typeof AppSolicitudesRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppCalendarioRoute: AppCalendarioRoute,
+  AppDocumentosRoute: AppDocumentosRoute,
+  AppEmpleadosRoute: AppEmpleadosRoute,
+  AppNovedadesRoute: AppNovedadesRoute,
+  AppPedidosRoute: AppPedidosRoute,
+  AppPerfilRoute: AppPerfilRoute,
+  AppRecibosRoute: AppRecibosRoute,
+  AppSectoresRoute: AppSectoresRoute,
+  AppSolicitudesRoute: AppSolicitudesRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
