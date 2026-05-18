@@ -192,7 +192,7 @@ function Empleados() {
   );
 }
 
-function FieldX({ label, v, on, type = "text" }: any) {
+function FieldX({ label, v, on, type = "text" }: { label: string; v: string; on: (v: string) => void; type?: string }) {
   return (
     <div>
       <Label>{label}</Label>
