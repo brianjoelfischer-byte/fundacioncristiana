@@ -14,16 +14,469 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      departments: {
+        Row: {
+          created_at: string
+          descripcion: string | null
+          id: string
+          nombre: string
+        }
+        Insert: {
+          created_at?: string
+          descripcion?: string | null
+          id?: string
+          nombre: string
+        }
+        Update: {
+          created_at?: string
+          descripcion?: string | null
+          id?: string
+          nombre?: string
+        }
+        Relationships: []
+      }
+      documents: {
+        Row: {
+          created_at: string
+          employee_id: string
+          fecha_vencimiento: string | null
+          file_path: string
+          id: string
+          nombre: string
+          tipo: Database["public"]["Enums"]["document_type"]
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          employee_id: string
+          fecha_vencimiento?: string | null
+          file_path: string
+          id?: string
+          nombre: string
+          tipo: Database["public"]["Enums"]["document_type"]
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          employee_id?: string
+          fecha_vencimiento?: string | null
+          file_path?: string
+          id?: string
+          nombre?: string
+          tipo?: Database["public"]["Enums"]["document_type"]
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "employees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      employees: {
+        Row: {
+          apellido: string
+          avatar_url: string | null
+          cargo: string | null
+          contacto_emergencia_nombre: string | null
+          contacto_emergencia_telefono: string | null
+          created_at: string
+          department_id: string | null
+          dias_vacaciones_disponibles: number
+          direccion: string | null
+          dni: string | null
+          email: string
+          estado: Database["public"]["Enums"]["employee_status"]
+          fecha_ingreso: string | null
+          fecha_nacimiento: string | null
+          id: string
+          jornada_laboral: string | null
+          legajo: string | null
+          nombre: string
+          supervisor_id: string | null
+          telefono: string | null
+          tipo_contrato: Database["public"]["Enums"]["contract_type"] | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          apellido: string
+          avatar_url?: string | null
+          cargo?: string | null
+          contacto_emergencia_nombre?: string | null
+          contacto_emergencia_telefono?: string | null
+          created_at?: string
+          department_id?: string | null
+          dias_vacaciones_disponibles?: number
+          direccion?: string | null
+          dni?: string | null
+          email: string
+          estado?: Database["public"]["Enums"]["employee_status"]
+          fecha_ingreso?: string | null
+          fecha_nacimiento?: string | null
+          id?: string
+          jornada_laboral?: string | null
+          legajo?: string | null
+          nombre: string
+          supervisor_id?: string | null
+          telefono?: string | null
+          tipo_contrato?: Database["public"]["Enums"]["contract_type"] | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          apellido?: string
+          avatar_url?: string | null
+          cargo?: string | null
+          contacto_emergencia_nombre?: string | null
+          contacto_emergencia_telefono?: string | null
+          created_at?: string
+          department_id?: string | null
+          dias_vacaciones_disponibles?: number
+          direccion?: string | null
+          dni?: string | null
+          email?: string
+          estado?: Database["public"]["Enums"]["employee_status"]
+          fecha_ingreso?: string | null
+          fecha_nacimiento?: string | null
+          id?: string
+          jornada_laboral?: string | null
+          legajo?: string | null
+          nombre?: string
+          supervisor_id?: string | null
+          telefono?: string | null
+          tipo_contrato?: Database["public"]["Enums"]["contract_type"] | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "employees_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "departments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "employees_supervisor_id_fkey"
+            columns: ["supervisor_id"]
+            isOneToOne: false
+            referencedRelation: "employees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          created_at: string
+          descripcion: string | null
+          fecha_fin: string | null
+          fecha_inicio: string
+          id: string
+          tipo: string | null
+          titulo: string
+          ubicacion: string | null
+        }
+        Insert: {
+          created_at?: string
+          descripcion?: string | null
+          fecha_fin?: string | null
+          fecha_inicio: string
+          id?: string
+          tipo?: string | null
+          titulo: string
+          ubicacion?: string | null
+        }
+        Update: {
+          created_at?: string
+          descripcion?: string | null
+          fecha_fin?: string | null
+          fecha_inicio?: string
+          id?: string
+          tipo?: string | null
+          titulo?: string
+          ubicacion?: string | null
+        }
+        Relationships: []
+      }
+      news: {
+        Row: {
+          author_id: string | null
+          categoria: Database["public"]["Enums"]["news_category"]
+          contenido: string
+          created_at: string
+          destacado: boolean
+          id: string
+          imagen_url: string | null
+          titulo: string
+        }
+        Insert: {
+          author_id?: string | null
+          categoria?: Database["public"]["Enums"]["news_category"]
+          contenido: string
+          created_at?: string
+          destacado?: boolean
+          id?: string
+          imagen_url?: string | null
+          titulo: string
+        }
+        Update: {
+          author_id?: string | null
+          categoria?: Database["public"]["Enums"]["news_category"]
+          contenido?: string
+          created_at?: string
+          destacado?: boolean
+          id?: string
+          imagen_url?: string | null
+          titulo?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          leida: boolean
+          link: string | null
+          mensaje: string
+          titulo: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          leida?: boolean
+          link?: string | null
+          mensaje: string
+          titulo: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          leida?: boolean
+          link?: string | null
+          mensaje?: string
+          titulo?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      payslips: {
+        Row: {
+          concepto: string | null
+          created_at: string
+          employee_id: string
+          file_path: string
+          id: string
+          monto: number | null
+          periodo_anio: number
+          periodo_mes: number
+          uploaded_by: string | null
+        }
+        Insert: {
+          concepto?: string | null
+          created_at?: string
+          employee_id: string
+          file_path: string
+          id?: string
+          monto?: number | null
+          periodo_anio: number
+          periodo_mes: number
+          uploaded_by?: string | null
+        }
+        Update: {
+          concepto?: string | null
+          created_at?: string
+          employee_id?: string
+          file_path?: string
+          id?: string
+          monto?: number | null
+          periodo_anio?: number
+          periodo_mes?: number
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payslips_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "employees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      requests: {
+        Row: {
+          archivo_url: string | null
+          comentario_rrhh: string | null
+          created_at: string
+          employee_id: string
+          estado: Database["public"]["Enums"]["request_status"]
+          fecha_desde: string
+          fecha_hasta: string | null
+          id: string
+          motivo: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          tipo: Database["public"]["Enums"]["request_type"]
+        }
+        Insert: {
+          archivo_url?: string | null
+          comentario_rrhh?: string | null
+          created_at?: string
+          employee_id: string
+          estado?: Database["public"]["Enums"]["request_status"]
+          fecha_desde: string
+          fecha_hasta?: string | null
+          id?: string
+          motivo: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          tipo: Database["public"]["Enums"]["request_type"]
+        }
+        Update: {
+          archivo_url?: string | null
+          comentario_rrhh?: string | null
+          created_at?: string
+          employee_id?: string
+          estado?: Database["public"]["Enums"]["request_status"]
+          fecha_desde?: string
+          fecha_hasta?: string | null
+          id?: string
+          motivo?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          tipo?: Database["public"]["Enums"]["request_type"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "requests_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "employees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tickets: {
+        Row: {
+          asunto: string
+          categoria: Database["public"]["Enums"]["ticket_category"]
+          created_at: string
+          descripcion: string
+          employee_id: string
+          estado: Database["public"]["Enums"]["ticket_status"]
+          id: string
+          responded_at: string | null
+          responded_by: string | null
+          respuesta: string | null
+        }
+        Insert: {
+          asunto: string
+          categoria: Database["public"]["Enums"]["ticket_category"]
+          created_at?: string
+          descripcion: string
+          employee_id: string
+          estado?: Database["public"]["Enums"]["ticket_status"]
+          id?: string
+          responded_at?: string | null
+          responded_by?: string | null
+          respuesta?: string | null
+        }
+        Update: {
+          asunto?: string
+          categoria?: Database["public"]["Enums"]["ticket_category"]
+          created_at?: string
+          descripcion?: string
+          employee_id?: string
+          estado?: Database["public"]["Enums"]["ticket_status"]
+          id?: string
+          responded_at?: string | null
+          responded_by?: string | null
+          respuesta?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tickets_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "employees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin_rrhh" | "empleado"
+      contract_type:
+        | "planta_permanente"
+        | "contrato"
+        | "monotributo"
+        | "pasantia"
+        | "suplente"
+      document_type:
+        | "contrato"
+        | "certificado"
+        | "licencia"
+        | "dni"
+        | "cv"
+        | "otro"
+      employee_status: "activo" | "licencia" | "suspendido" | "baja"
+      news_category: "comunicado" | "anuncio" | "novedad" | "alerta"
+      request_status: "pendiente" | "aprobado" | "rechazado" | "cancelado"
+      request_type:
+        | "permiso_personal"
+        | "vacaciones"
+        | "licencia_medica"
+        | "llegada_tarde"
+        | "ausencia"
+        | "administrativo"
+      ticket_category:
+        | "certificado_laboral"
+        | "consulta"
+        | "actualizacion_datos"
+        | "reclamo"
+        | "soporte"
+        | "otro"
+      ticket_status: "abierto" | "en_proceso" | "resuelto" | "cerrado"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +603,43 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin_rrhh", "empleado"],
+      contract_type: [
+        "planta_permanente",
+        "contrato",
+        "monotributo",
+        "pasantia",
+        "suplente",
+      ],
+      document_type: [
+        "contrato",
+        "certificado",
+        "licencia",
+        "dni",
+        "cv",
+        "otro",
+      ],
+      employee_status: ["activo", "licencia", "suspendido", "baja"],
+      news_category: ["comunicado", "anuncio", "novedad", "alerta"],
+      request_status: ["pendiente", "aprobado", "rechazado", "cancelado"],
+      request_type: [
+        "permiso_personal",
+        "vacaciones",
+        "licencia_medica",
+        "llegada_tarde",
+        "ausencia",
+        "administrativo",
+      ],
+      ticket_category: [
+        "certificado_laboral",
+        "consulta",
+        "actualizacion_datos",
+        "reclamo",
+        "soporte",
+        "otro",
+      ],
+      ticket_status: ["abierto", "en_proceso", "resuelto", "cerrado"],
+    },
   },
 } as const
