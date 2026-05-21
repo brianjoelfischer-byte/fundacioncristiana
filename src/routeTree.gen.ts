@@ -18,6 +18,7 @@ import { Route as AppSectoresRouteImport } from './routes/app.sectores'
 import { Route as AppRecibosRouteImport } from './routes/app.recibos'
 import { Route as AppPerfilRouteImport } from './routes/app.perfil'
 import { Route as AppPedidosRouteImport } from './routes/app.pedidos'
+import { Route as AppOnboardingRouteImport } from './routes/app.onboarding'
 import { Route as AppNovedadesRouteImport } from './routes/app.novedades'
 import { Route as AppEmpleadosRouteImport } from './routes/app.empleados'
 import { Route as AppDocumentosRouteImport } from './routes/app.documentos'
@@ -68,6 +69,11 @@ const AppPedidosRoute = AppPedidosRouteImport.update({
   path: '/pedidos',
   getParentRoute: () => AppRoute,
 } as any)
+const AppOnboardingRoute = AppOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppNovedadesRoute = AppNovedadesRouteImport.update({
   id: '/novedades',
   path: '/novedades',
@@ -97,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/app/documentos': typeof AppDocumentosRoute
   '/app/empleados': typeof AppEmpleadosRoute
   '/app/novedades': typeof AppNovedadesRoute
+  '/app/onboarding': typeof AppOnboardingRoute
   '/app/pedidos': typeof AppPedidosRoute
   '/app/perfil': typeof AppPerfilRoute
   '/app/recibos': typeof AppRecibosRoute
@@ -111,6 +118,7 @@ export interface FileRoutesByTo {
   '/app/documentos': typeof AppDocumentosRoute
   '/app/empleados': typeof AppEmpleadosRoute
   '/app/novedades': typeof AppNovedadesRoute
+  '/app/onboarding': typeof AppOnboardingRoute
   '/app/pedidos': typeof AppPedidosRoute
   '/app/perfil': typeof AppPerfilRoute
   '/app/recibos': typeof AppRecibosRoute
@@ -127,6 +135,7 @@ export interface FileRoutesById {
   '/app/documentos': typeof AppDocumentosRoute
   '/app/empleados': typeof AppEmpleadosRoute
   '/app/novedades': typeof AppNovedadesRoute
+  '/app/onboarding': typeof AppOnboardingRoute
   '/app/pedidos': typeof AppPedidosRoute
   '/app/perfil': typeof AppPerfilRoute
   '/app/recibos': typeof AppRecibosRoute
@@ -144,6 +153,7 @@ export interface FileRouteTypes {
     | '/app/documentos'
     | '/app/empleados'
     | '/app/novedades'
+    | '/app/onboarding'
     | '/app/pedidos'
     | '/app/perfil'
     | '/app/recibos'
@@ -158,6 +168,7 @@ export interface FileRouteTypes {
     | '/app/documentos'
     | '/app/empleados'
     | '/app/novedades'
+    | '/app/onboarding'
     | '/app/pedidos'
     | '/app/perfil'
     | '/app/recibos'
@@ -173,6 +184,7 @@ export interface FileRouteTypes {
     | '/app/documentos'
     | '/app/empleados'
     | '/app/novedades'
+    | '/app/onboarding'
     | '/app/pedidos'
     | '/app/perfil'
     | '/app/recibos'
@@ -252,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppPedidosRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/onboarding': {
+      id: '/app/onboarding'
+      path: '/onboarding'
+      fullPath: '/app/onboarding'
+      preLoaderRoute: typeof AppOnboardingRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/novedades': {
       id: '/app/novedades'
       path: '/novedades'
@@ -288,6 +307,7 @@ interface AppRouteChildren {
   AppDocumentosRoute: typeof AppDocumentosRoute
   AppEmpleadosRoute: typeof AppEmpleadosRoute
   AppNovedadesRoute: typeof AppNovedadesRoute
+  AppOnboardingRoute: typeof AppOnboardingRoute
   AppPedidosRoute: typeof AppPedidosRoute
   AppPerfilRoute: typeof AppPerfilRoute
   AppRecibosRoute: typeof AppRecibosRoute
@@ -301,6 +321,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDocumentosRoute: AppDocumentosRoute,
   AppEmpleadosRoute: AppEmpleadosRoute,
   AppNovedadesRoute: AppNovedadesRoute,
+  AppOnboardingRoute: AppOnboardingRoute,
   AppPedidosRoute: AppPedidosRoute,
   AppPerfilRoute: AppPerfilRoute,
   AppRecibosRoute: AppRecibosRoute,
@@ -319,13 +340,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

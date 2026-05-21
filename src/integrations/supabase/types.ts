@@ -80,14 +80,21 @@ export type Database = {
         Row: {
           apellido: string
           avatar_url: string | null
+          barrio: string | null
+          calle: string | null
           cargo: string | null
+          ciudad: string | null
+          codigo_postal: string | null
           contacto_emergencia_nombre: string | null
           contacto_emergencia_telefono: string | null
           created_at: string
+          cuil: string | null
           department_id: string | null
+          depto: string | null
           dias_vacaciones_disponibles: number
           direccion: string | null
           dni: string | null
+          edificio: string | null
           email: string
           estado: Database["public"]["Enums"]["employee_status"]
           fecha_ingreso: string | null
@@ -96,6 +103,10 @@ export type Database = {
           jornada_laboral: string | null
           legajo: string | null
           nombre: string
+          numero: string | null
+          perfil_completo: boolean
+          piso: string | null
+          provincia: string | null
           supervisor_id: string | null
           telefono: string | null
           tipo_contrato: Database["public"]["Enums"]["contract_type"] | null
@@ -105,14 +116,21 @@ export type Database = {
         Insert: {
           apellido: string
           avatar_url?: string | null
+          barrio?: string | null
+          calle?: string | null
           cargo?: string | null
+          ciudad?: string | null
+          codigo_postal?: string | null
           contacto_emergencia_nombre?: string | null
           contacto_emergencia_telefono?: string | null
           created_at?: string
+          cuil?: string | null
           department_id?: string | null
+          depto?: string | null
           dias_vacaciones_disponibles?: number
           direccion?: string | null
           dni?: string | null
+          edificio?: string | null
           email: string
           estado?: Database["public"]["Enums"]["employee_status"]
           fecha_ingreso?: string | null
@@ -121,6 +139,10 @@ export type Database = {
           jornada_laboral?: string | null
           legajo?: string | null
           nombre: string
+          numero?: string | null
+          perfil_completo?: boolean
+          piso?: string | null
+          provincia?: string | null
           supervisor_id?: string | null
           telefono?: string | null
           tipo_contrato?: Database["public"]["Enums"]["contract_type"] | null
@@ -130,14 +152,21 @@ export type Database = {
         Update: {
           apellido?: string
           avatar_url?: string | null
+          barrio?: string | null
+          calle?: string | null
           cargo?: string | null
+          ciudad?: string | null
+          codigo_postal?: string | null
           contacto_emergencia_nombre?: string | null
           contacto_emergencia_telefono?: string | null
           created_at?: string
+          cuil?: string | null
           department_id?: string | null
+          depto?: string | null
           dias_vacaciones_disponibles?: number
           direccion?: string | null
           dni?: string | null
+          edificio?: string | null
           email?: string
           estado?: Database["public"]["Enums"]["employee_status"]
           fecha_ingreso?: string | null
@@ -146,6 +175,10 @@ export type Database = {
           jornada_laboral?: string | null
           legajo?: string | null
           nombre?: string
+          numero?: string | null
+          perfil_completo?: boolean
+          piso?: string | null
+          provincia?: string | null
           supervisor_id?: string | null
           telefono?: string | null
           tipo_contrato?: Database["public"]["Enums"]["contract_type"] | null
